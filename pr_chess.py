@@ -4,6 +4,12 @@
 Square A1 = (1,1)
 Square B1 = (2,1)
 Square D7 = (4,7)
+
+Modules could potentially add:
+1) speech recognition
+2) speaker (i.e. hear the other person talking)
+3) smack-talk on/off 
+4) pieces hidden / visible (same as blindfold chess)
 """
 
 
@@ -123,13 +129,7 @@ def pawn_legal_moves(square):
                     legal_moves.append(  (square[0]+1, square[1]-1)  ) 
     return legal_moves
     
-board[6,6] = "wp" 
-print(f"***\nlegal moves for white pawn at f6 = {    pawn_legal_moves(  (6,6)  )    }\n***") 
-print(f"***\nlegal_moves for white pawn at b2 = {    pawn_legal_moves((2,2))   }\n***")
 
-board[6,3] = "bp" 
-print(f"***\nlegal moves for black pawn at d7 = {    pawn_legal_moves(  (4,7)  )    }\n***") 
-print(f"***\nlegal_moves for black pawn at f3 = {    pawn_legal_moves((6,3))   }\n***")
 
 def rook_legal_moves(square): 
 
@@ -162,7 +162,7 @@ def bishop_legal_moves(square):
     legal_moves = []
     return legal_moves
   
-def queen_legal_moves(square): 
+def knight_legal_moves(square): 
     legal_moves = []
     return legal_moves
     
@@ -170,8 +170,80 @@ def queen_legal_moves(square):
     legal_moves = []
     return legal_moves
 
+def king_legal_moves(square): 
+    legal_moves = []
+    return legal_moves
+
 
 ##################################  ASSERT IF CHECKMATE: 
 
 ##################################  ASSERT IF STALEMATE: 
+
+
+
+if __name__ == "__main__":
+
+    ##############################  PAWN TESTS:
+    board[6,6] = "wp" 
+    print(f"***\nlegal moves for white pawn at f6 = {    pawn_legal_moves(  (6,6)  )    }\n***") 
+    print(f"***\nlegal_moves for white pawn at b2 = {    pawn_legal_moves((2,2))   }\n***")
+    board[6,6] = None
+
+    board[6,3] = "bp" 
+    print(f"***\nlegal moves for black pawn at d7 = {    pawn_legal_moves(  (4,7)  )    }\n***") 
+    print(f"***\nlegal_moves for black pawn at f3 = {    pawn_legal_moves((6,3))   }\n***") 
+    board[6,3] = None 
+
+    ##############################  ROOK TESTS:
+    print(f"***\nlegal moves for white rook at a1 = {    rook_legal_moves(  (1,1)  )    }\n***") 
+    print(f"***\nlegal moves for black rook at a8 = {    rook_legal_moves(  (1,8)  )    }\n***") 
+    board[4,4] = "wr" 
+    board[5,5] = "br" 
+    print(f"***\nlegal moves for white rook at d4 = {    rook_legal_moves(  (4,4)  )    }\n***") 
+    print(f"***\nlegal moves for black rook at e5 = {    rook_legal_moves(  (5,5)  )    }\n***") 
+    board[4,4] = None 
+    board[5,5] = None 
+
+    ##############################  BISHOP TESTS:
+    print(f"***\nlegal moves for white bishop at c1 = {    bishop_legal_moves(  (3,1)  )    }\n***") 
+    print(f"***\nlegal moves for black bishop at c8 = {    bishop_legal_moves(  (3,8)  )    }\n***") 
+    board[4,4] = "wb" 
+    board[5,6] = "bb" 
+    print(f"***\nlegal moves for white bishop at d4 (black square) = {    bishop_legal_moves(  (4,4)  )    }\n***") 
+    print(f"***\nlegal moves for black bishop at e6 (white square) = {    bishop_legal_moves(  (5,6)  )    }\n***") 
+    board[4,4] = None 
+    board[5,6] = None 
+    
+    ##############################  KING TESTS:
+    print(f"***\nlegal moves for white king at e1 = {    king_legal_moves(  (5,1)  )    }\n***") 
+    print(f"***\nlegal moves for black king at e8 = {    king_legal_moves(  (5,8)  )    }\n***") 
+    board[4,4] = "wking"
+    board[5,6] = "bking"
+    print(f"***\nlegal moves for white king at d4 = {    king_legal_moves(  (4,4)  )    }\n***") 
+    print(f"***\nlegal moves for black king at e6 (black square) = {    king_legal_moves(  (5,6)  )    }\n***") 
+    board[4,4] = None 
+    board[5,6] = None
+    
+    ##############################  QUEEN TESTS:
+    print(f"***\nlegal moves for white queen at d1 = {    queen_legal_moves(  (4,1)  )    }\n***") 
+    print(f"***\nlegal moves for black queen at d8 = {    queen_legal_moves(  (4,8)  )    }\n***") 
+    board[4,4] = "wq"
+    board[5,6] = "bq"
+    print(f"***\nlegal moves for white queen at d4 = {    queen_legal_moves(  (4,4)  )    }\n***") 
+    print(f"***\nlegal moves for black queen at e6 = {    queen_legal_moves(  (5,6)  )    }\n***") 
+    board[4,4] = None 
+    board[5,6] = None 
+    
+    ##############################  KNIGHT TESTS:
+    print(f"***\nlegal moves for white knight at d1 = {    knight_legal_moves(  (4,1)  )    }\n***") 
+    print(f"***\nlegal moves for black knight at d8 = {    knight_legal_moves(  (4,8)  )    }\n***") 
+    board[4,4] = "wkni"
+    board[5,6] = "bkni"
+    print(f"***\nlegal moves for white knight at d4 = {    knight_legal_moves(  (4,4)  )    }\n***") 
+    print(f"***\nlegal moves for black knight at e6 = {    knight_legal_moves(  (5,6)  )    }\n***") 
+    board[4,4] = None 
+    board[5,6] = None 
+
+
+
 
