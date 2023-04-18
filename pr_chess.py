@@ -146,6 +146,34 @@ def rook_legal_moves(square):
     print(f"colour = {colour}")
     
     legal_moves = []
+    
+    while True:
+    
+        forward
+            increment +1 row
+            
+            if off the board (row>8) or hit same colour piece - break without adding the new square
+            if hit other colour piece - break AFTER adding the new square. 
+            
+        backward
+            increment -1 row
+
+            if off the board (row<1) or hit same colour piece - break without adding the new square
+            if hit other colour piece - break AFTER adding the new square.
+            
+        left 
+            increment -1 column
+            
+            if off the board (column<1) or hit same colour piece - break without adding the new square
+            if hit other colour piece - break AFTER adding the new square.
+            
+        right
+            increment +1 column
+
+            if off the board (column>8) or hit same colour piece - break without adding the new square
+            if hit other colour piece - break AFTER adding the new square.
+        
+        break 
 
     """
     ############################ STRAIGHT AHEAD MOVES:
@@ -162,19 +190,51 @@ def bishop_legal_moves(square):
     legal_moves = []
     return legal_moves
   
-def knight_legal_moves(square): 
+def knight_legal_moves(square):
+    """
+    maximum 8 possible moves 
+    Constraints: i) can't go off edge of board. 
+                 ii) can't jump onto a square occupied by same-colour piece.
+    8 x Combinations: [ (2,1), (2,-1), (1,2), (1,-2), (-1,2), (-1,-2), (-2,1), (-2,-1)  ]
+    """    
+    
     legal_moves = []
     return legal_moves
     
 def queen_legal_moves(square): 
     legal_moves = []
+    
+    ## ROOK MOVES
+    ##  + 
+    ## BISHOP MOVES.
+    ##  = 
+    ## Q MOVES (i.e. combination of B & R)  
+    
     return legal_moves
 
-def king_legal_moves(square): 
+def king_legal_moves(square):
+    """ 
+    Max 8 possible moves. 
+    Constraints: i) can't go off edge of board
+                ii) can't go onto square occupied by piece of same colour. 
+                iii) can't go onto a square with Check.
+    Potential moves: [(1,0), (1,1), (0,1), (1,-1),(0,-1), (-1,-1),(-1,0), (-1,1) ]
+    """ 
+    
     legal_moves = []
     return legal_moves
 
-
+##################################  ASSERT IF CHECK: 
+def is_check(square, colour_king):
+    # Create list of all pieces of opposite colour
+    # Check if any of these pieces attacking the square
+        # [i.e. is it anywhere in legal moves for Bishop / Queen / Knight / Rook. 
+        #  [is it in Pawn Diagonal moves only (not the straight ahead move)
+    # If yes Check - then return True. If not check - return False.
+    
+    result = False 
+    return result 
+    
 ##################################  ASSERT IF CHECKMATE: 
 
 ##################################  ASSERT IF STALEMATE: 
